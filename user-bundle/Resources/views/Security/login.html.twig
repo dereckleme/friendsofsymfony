@@ -1,0 +1,91 @@
+{% extends "base.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+    <!-- ##### Menu ##### -->
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m6">
+                <div class ="titles-box" >
+                    <h2 class = "titles-top">Entrar</h2>
+                </div>
+
+                <div class="card-panel">
+                    <div class="card-content">
+                        <p>Para participar das vantagens do leilão da Bid Travel é necessario fazer login.</p>
+                        <form action="{{ path("fos_user_security_check") }}" method="post">
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                            <div class="row margin">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">perm_identity</i>
+                                    <input type="text" class="validate" id="login" name="_username" value="{{ last_username }}" required="required" />
+                                    <label for="login">Login</label>
+                                </div>
+                            </div>
+                            <div class="row margin">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">lock_outline</i>
+                                    <input type="password" id="password" name="_password" required="required" />
+                                    <label for="password">Senha</label>
+                                </div>
+                            </div>
+                            <div class="row margin">
+                                <div class="input-field col s6 m6 l6">
+                                    <input type="submit" id="_submit" class="btn waves-effect waves-light green darken-3" name="_submit" value="{{ 'Entrar'|trans }}" />
+                                </div>
+                                <div class="input-field col s3 m3 l3  login-text">
+                                    <input type="checkbox" id="remember-me" name="_remember_me" value="on" />
+                                    <label for="remember-me">Lembrar</label>
+                                </div>
+                                <div class="input-field col s6 m6 l6">
+                                    <a class="right" href="{{ path("fos_user_resetting_request") }}">Esqueceu sua senha?</a>
+                                </div>
+                            </div>
+                            {% if error %}
+                                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                            {% endif %}
+                    </div>
+
+                    <!--<div class = "divider"></div>
+                      <h4 class="center grey-text text-lighten-1">ou</h4>
+                      <a class="btn blue darken-4 btn-block" href="myaccount.html">
+                        <i class="fa fa-facebook margin-right-5"></i> Entrar com o facebook
+                      </a>-->
+                </div>
+                </form>
+            </div>
+            <div class="col s12 m6">
+                <div class ="titles-box" >
+                    <h1 class = "titles-top">Não</h1>
+                    <h3 class = "titles-bottom right">é cadastrado?</h3>
+                </div>
+                <div class="card-panel">
+                    <div class="card-content">
+                        <p>Entre para o nosso clube de viagens.</p>
+                        <form class="register-form">
+                            <div class="row margin">
+                                <div class="input-field col s8">
+                                    <a href="{{ url("fos_user_registration_register") }}" class="btn waves-effect waves-light green darken-3">Cadastre-se</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    {% block javascripts %}
+        {% javascripts
+        '@AppBundle/Resources/js/jquery-2.1.1.min.js'
+        '@AppBundle/Resources/js/materialize.js'
+        '@AppBundle/Resources/js/init.js'
+        '@AppBundle/Resources/js/jquery.formatter.min.js'
+        '@AppBundle/Resources/js/swiper.min.js'
+        '@AppBundle/Resources/js/confirmed.js'%}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endblock %}
+{% endblock body %}

@@ -1,0 +1,124 @@
+{% extends "base.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+    <div class="container">
+        <div class ="white-text left" style="border-right: 3px solid #fff; height: 170px; margin: 15px;">
+            <div class ="titles-box" >
+                <h1 class = "titles-top">Crie</h1>
+                <h3 class ="titles-bottom right" style="margin-right: 10px;">sua conta.</h3>
+            </div>
+        </div>
+        <ul class="pagination white-text">
+            <li class="active"><a href="register.html">Etapa1</a></li>
+            <li class="waves-effect"><a href="register_2.html">Etapa2</a></li>
+            <li class="waves-effect"><a href="#!">Etapa3</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="col s12 z-depth-6 card-panel">
+            {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register login-form'}}) }}
+            {{ form_errors(form.email) }}
+            {{ form_errors(form.username) }}
+            {{ form_row(form._token) }}
+            <h5>Informações Básicas</h5>
+            <div class="row">
+                <div class="input-field col l6 s12" data-tooltip="Digite seu nome conforme o documento de identidade">
+                    {{ form_widget(form.nome) }}
+                    <label for="first_name" >Nome</label>
+                </div>
+                <div class="input-field col l6 s12" data-tooltip="Digite seu sobrenome conforme o documento de identidade">
+                    {{ form_widget(form.sobrenome) }}
+                    <label for="last_name" >Sobrenome</label>
+                </div>
+            </div>
+                <div class="row">
+                    <div class="input-field col l6 s12" data-tooltip="Digite seu login para acesso ao bidtravel">
+                        <i class="material-icons prefix">perm_identity</i>
+                        <input id="first_name" type="text" class="validate" name="fos_user_registration_form[username]">
+                        <label for="first_name">Login</label>
+                    </div>
+                    <div class="input-field col l6 s12" data-tooltip="Digite seu email de acesso ao bidtravel">
+                        <input id="email" name="fos_user_registration_form[email]" type="email" class="validate">
+                        <label for="email">Email</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col l6 s12" data-tooltip="8 a 20 caracteres">
+                        <i class="material-icons prefix">lock_outline</i>
+                        <input name="fos_user_registration_form[plainPassword][first]" id="password" type="password" class="validate" length="20">
+                        <label for="password">Senha</label>
+                    </div>
+                    <div class="input-field col l6 s12" data-tooltip="8 a 20 caracteres">
+                        <input name="fos_user_registration_form[plainPassword][second]" id="password-again" type="password" length="20">
+                        <label for="password-again">Confirma senha</label>
+                    </div>
+                </div>
+            <div class="row">
+                <div class="input-field col l6 s12" data-tooltip="Digite um apelido para seu usuário">
+                    <i class="material-icons prefix">assignment_ind</i>
+                    {{ form_widget(form.apelido) }}
+                    <label for="username" >Apelido</label>
+                </div>
+
+                <div class="col l6 s12 right">
+                    <div class="card lime lighten-5">
+                        <div class="card-content">
+                            <p>O Apelido é a sua identificação pública nas telas de lance. Não pode ser uma palavra ofensiva ou conter semelhança com a identidade da conta.Você pode utilizar letras maiúsculas, minúsculas e números para diferenciar seu apelido de um já existente.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col l6 s12">
+                    <p>
+                        {{ form_widget(form.sexo) }}
+                    </p>
+                </div>
+            </div>
+
+                <div class="row right">
+                    <div class="col s12">
+                        <button class="btn waves-effect waves-light  lime darken-3" type="reset" id="configreset" value="Reset">Limpar</button>
+                        <input class="waves-effect green darken-3 btn" type="submit" value="{{ 'Enviar'|trans }}" />
+                    </div>
+                </div>
+                <div class="input-field col s12">
+                    <p class="margin center medium-small sign-up">Já possui uma conta? <a href="{{ url("fos_user_security_login") }}">Entrar</a></p>
+                </div>
+        </div>
+        </form>
+    </div>
+    </div>
+    </div>
+
+
+    <!-- ##### Modal Etapa1 ##### -->
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Etapa 1 Concluída!</h4>
+            <p>Validação de e-mail: por favor, verifique a caixa de entrada do seu e-mail.</p>
+            <p><b>seunome@seusite.com.br</b></p>
+            <p>Para avançar a Etapa 2, enviamos uma mensagem de confirmação para o endereço de e-mail que você cadastrou. Para prosseguir com a criação da sua conta, clique no link contido na mensagem e siga as orientações.</p>
+            <p> Não recebeu o e-mail?<p>
+            <p>Verifique se seu endereço de e-mail foi digitado corretamente ou se a mensagem foi encaminhada para a pasta de lixo eletrônico ("spam"). </p>
+        </div>
+        <div class="modal-footer">
+            <a href="register_2.html" class="modal-action modal-close waves-effect waves-green btn-flat ">Fechar</a>
+        </div>
+    </div>
+
+    {% block javascripts %}
+        {% javascripts
+        '@AppBundle/Resources/js/jquery-2.1.1.min.js'
+        '@AppBundle/Resources/js/materialize.js'
+        '@AppBundle/Resources/js/init.js'
+        '@AppBundle/Resources/js/jquery.formatter.min.js'
+        '@AppBundle/Resources/js/swiper.min.js'
+        '@AppBundle/Resources/js/confirmed.js'%}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endblock %}
+{% endblock body %}

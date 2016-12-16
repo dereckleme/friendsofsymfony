@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+<!-- ##### Menu ##### -->
+    <div class="row">
+        <div class ="titles-box" >
+            <h1 class = "titles-top">Esqueceu sua senha?</h2>
+                <h3 class = "titles-bottom"></h3>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row white">
+{% include "FOSUserBundle:Resetting:request_content.html.twig" %}
+	</div>
+    </div>
+{% block javascripts %}
+        {% javascripts
+        '@AppBundle/Resources/js/jquery-2.1.1.min.js'
+        '@AppBundle/Resources/js/materialize.js'
+        '@AppBundle/Resources/js/init.js'
+        '@AppBundle/Resources/js/jquery.formatter.min.js'
+        '@AppBundle/Resources/js/swiper.min.js'
+        '@AppBundle/Resources/js/confirmed.js'%}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endblock %}
+{% endblock body %}

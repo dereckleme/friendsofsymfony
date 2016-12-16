@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+
+<!-- ##### Menu ##### -->
+<div class="container">
+    <div class ="white-text left" style="border-right: 3px solid #fff; height: 170px; margin: 15px;">
+        <div class ="titles-box" >
+            <h1 class = "titles-top">Confirme</h1>
+            <h3 class = "titles-bottom" style="margin-right: 10px;">seu e-mail.</h3>
+        </div>
+    </div>
+    <ul class="pagination white-text">
+        <li class="waves-effect"><a href="register.html">Etapa1</a></li>
+        <li class="active" ><a href="register_2.html">Etapa2</a></li>
+        <li class="waves-effect"><a href="#!">Etapa3</a></li>
+    </ul>
+</div>
+
+<div class="container">
+    <div class="col s12 card-panel">
+        <p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
+    </div>
+</div>
+{% endblock body %}
